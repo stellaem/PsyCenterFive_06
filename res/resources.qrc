@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/QML">
+        <file>main.qml</file>
+        <file>Adm/MainAdm.qml</file>
+        <file>Dia/DiaPrgSelect.qml</file>
+        <file>Sp/MainSp.qml</file>
+        <file>Dev/MainDev.qml</file>
+        <file>Adm/TimetableAdm.qml</file>
+        <file>Adm/Timetable/Header.qml</file>
+        <file>Adm/Timetable/Sidebar.qml</file>
+        <file>Adm/Timetable/Timetable.qml</file>
+        <file>_widgets/Tasks.qml</file>
+        <file>Adm/Timetable/timetableItem_func.js</file>
+    </qresource>
+    <qresource prefix="/Image">
+        <file>icons/calendar.png</file>
+        <file>icons/menu.png</file>
+        <file>icons/open.png</file>
+        <file>icons/search.png</file>
+        <file>icons/tasks.png</file>
+        <file>icons/toLeft.png</file>
+        <file>icons/toRight.png</file>
+    </qresource>
+</RCC>
