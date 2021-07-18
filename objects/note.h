@@ -26,5 +26,4 @@ private:
     Q_PROPERTY(int id READ getId WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QString text READ getText WRITE setText NOTIFY textChanged)
 };
-
 #endif // NOTE_H

@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
+#include <QDebug>
 #include <QLocale>
 #include <QTranslator>
 #include <QQmlContext>
@@ -8,7 +8,10 @@
 #include <QSqlQueryModel>
 
 #include "persons/client.h"
-#include "settings/settings.h"
+
+#include "translator.h"
+#include "engine.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -22,31 +25,11 @@ int main(int argc, char *argv[])
     db.setDatabaseName(".//db.sqlite");
     db.open();
 /*------------------------------------------------------------------------------------------------*/
-    Settings *settings = new Settings();
-    QSqlQueryModel *qMCabinet = new QSqlQueryModel();
-    qMCabinet->setQuery("select id, name from cabinet");
+    // Translator *translator = new Translator(&app);
 /*------------------------------------------------------------------------------------------------*/
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "PsyCenterFive_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            app.installTranslator(&translator);
-            break;
-        }
-    }
-/*------------------------------------------------------------------------------------------------*/
-    QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/QML/main.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
-
-    engine.rootContext()->setContextProperty("settings", settings);
-    engine.rootContext()->setContextProperty("qMCabinet", qMCabinet);
-    engine.load(url);
+    Engine *engine = new Engine(app, url);
+    engine->load("qrc:/QML/main.qml");
 /*------------------------------------------------------------------------------------------------*/
     return app.exec();
 /**************************************************************************************************/

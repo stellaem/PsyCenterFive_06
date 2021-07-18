@@ -40,6 +40,8 @@ Window {
             Layout.column: 1
             Layout.columnSpan: 1
             Layout.rowSpan: 2
+            _calendar.onClicked: {_timetable.reloadItems(date)}
         }
     }
+
 }

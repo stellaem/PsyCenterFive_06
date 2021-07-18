@@ -4,6 +4,8 @@
 #include <QDate>
 #include <QObject>
 #include <QPixmap>
+#include <QSqlQuery>
+#include <QVariant>
 
 #include "objects/recommendation.h"
 #include "objects/request.h"

@@ -1,6 +1,5 @@
 #include "client.h"
-#include <QDebug>
-#include <QSqlQuery>
+
 
 Client::Client(int id, QObject *parent): QObject(parent),
     id(id)

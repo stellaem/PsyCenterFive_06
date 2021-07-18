@@ -25,4 +25,5 @@ private:
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
 };
 
+
 #endif // PLACE_H

@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.15
 import "qrc:/QML/Adm/Timetable/timetableItem_func.js" as Func_items
 
+
 GridLayout {
     id: _parent
     rows: 2
@@ -17,15 +18,15 @@ GridLayout {
         Layout.fillWidth: true
         height: 40
         orientation: Qt.Horizontal
-        model: qMCabinet.rowCount()
+        model: qMPlace.rowCount()
         delegate:
             Rectangle {
             id: _itemHeaderCabinet
-            width: _headerCabinet.width / qMCabinet.rowCount()
+            width: _headerCabinet.width / qMPlace.rowCount()
             height: _headerCabinet.height
             Text {
                 anchors.fill: parent
-                text: qMCabinet.data(qMCabinet.index(index, 1))
+                text: qMPlace.data(qMPlace.index(index, 1))
                 font.pixelSize: 20
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -75,10 +76,10 @@ GridLayout {
         flow : GridLayout.TopToBottom
         columnSpacing: 0
         rowSpacing: 0
-        columns: qMCabinet.rowCount()
+        columns: qMPlace.rowCount()
         rows: settings.countHours()
         Repeater {
-            model: qMCabinet.rowCount() * settings.countHours()
+            model: qMPlace.rowCount() * settings.countHours()
             delegate:
                 Rectangle {
                     Layout.fillHeight: true
@@ -98,14 +99,20 @@ GridLayout {
     }
     GridLayout {
         id : _gridInvisible
-        anchors.fill: _gridVisible
+        Layout.row: 1
+        Layout.column: 1
+        Layout.columnSpan: 1
+        Layout.rowSpan: 1
+        Layout.fillWidth: true
+        Layout.fillHeight: true
         flow : GridLayout.TopToBottom
         columnSpacing: 0
         rowSpacing: 0
-        columns: qMCabinet.rowCount()
+        columns: qMPlace.rowCount()
         rows: settings.countSegments()
+        z: 2
         Repeater {
-            model: qMCabinet.rowCount() * settings.countSegments()
+            model: qMPlace.rowCount() * settings.countSegments()
             delegate:
                 DropArea {
                     Layout.fillHeight: true
@@ -121,17 +128,21 @@ GridLayout {
         }
     }
 
-    function reloadItems()
+    function reloadItems(date)
     {
+
         for (var i in _gridInvisible.data){
             if(_gridInvisible.data[i].typeName === '_itemClass')
             {
                 _gridInvisible.data[i].destroy()
             }
         }
-       Func_items.createItems()
+        Func_items.createItems()
     }
 }
+
+
+
 
 
 

@@ -3,6 +3,8 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 
 Rectangle {
+    property alias _listViewTask: _listViewTask
+
     Layout.fillWidth: true
     Layout.fillHeight: true
     ColumnLayout {
@@ -56,7 +58,7 @@ Rectangle {
                         }
                         Text {
                             id: _textTask
-                            text: "Господа, реализация намеченных плановых заданий представляет собой интересный эксперимент проверки своевременного выполнения сверхзадачи."
+                            text: display
                             width: _listViewTask.width - 25
                             font.pixelSize: 12
                             wrapMode: Text.WordWrap

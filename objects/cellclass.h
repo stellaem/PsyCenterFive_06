@@ -52,8 +52,8 @@ private:
     Specialist *specialist;
     QList<QVariant> listVClient;
 
-    void searchFromClassClient();;
-    void addToListVClient(int id_client);;
+    void searchFromClassClient();
+    void addToListVClient(int id_client);
 
     Q_PROPERTY(int id READ getId WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QDateTime dateAndTimeStart READ getDateAndTimeStart WRITE setDateAndTimeStart NOTIFY dateAndTimeStartChanged)

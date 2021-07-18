@@ -44,5 +44,6 @@ Window {
         Adm.TimetableAdm {
                 id: _timetable
             }
+
     }
 }

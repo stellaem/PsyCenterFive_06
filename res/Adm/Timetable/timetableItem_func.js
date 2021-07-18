@@ -1,19 +1,19 @@
 function createItems()
 {
-        listVCellClass.forEach(function(cellClass, i, arr)
+    admProperty.getListVCellClass().forEach(function(cellClass, i, arr)
     {
 
-        var item = Qt.createComponent("qrc:/QML/administration/timetableGrid_Item.qml")
+        var item = Qt.createComponent("qrc:/QML/Adm/Timetable/TimetableGrid_Item.qml")
         item.createObject(_gridInvisible,
         {
             'typeName': "_itemClass",
             'idClass': cellClass.id,
             'time': cellClass.timeStart,
-            'cabinet': cellClass.cabinet,
+            'place': cellClass.place,
             'specialist': cellClass.specialist,
             'listClient': cellClass.listVClient,
             'Layout.row': ( cellClass.timeStart - settings.getStartCenter() ) / ( 60000 * 60 / settings.countCellPerHour() ),
-            'Layout.column': findIndexCabinet(cellClass),
+            'Layout.column': findIndexPlace(cellClass),
             'Layout.rowSpan': settings.countCellPerHour() * cellClass.duration / 60 ,
             'Layout.fillHeight': true,
             'Layout.fillWidth': true,
@@ -22,13 +22,13 @@ function createItems()
     })
 }
 
-function findIndexCabinet(cellClass)
+function findIndexPlace(cellClass)
 {
-    for (var indexCabinet = 0; indexCabinet < qMCabinet.rowCount(); indexCabinet++)
+    for (var indexPlace = 0; indexPlace < qMPlace.rowCount(); indexCabinet++)
     {
-        if (qMCabinet.data(qMCabinet.index(indexCabinet, 0))  === cellClass.cabinet.id)
+        if (qMPlace.data(qMPlace.index(indexPlace, 0))  === cellClass.place.id)
         {
-            return indexCabinet
+            return indexPlace
         }
     }
 }

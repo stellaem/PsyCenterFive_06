@@ -63,5 +63,5 @@ private:
     Q_PROPERTY(QDate birthday READ getBirthday WRITE setBirthday NOTIFY birthdayChanged)
     Q_PROPERTY(QPixmap photo READ getPhoto WRITE setPhoto NOTIFY photoChanged)
 };
-
 #endif // SPECIALIST_H
+

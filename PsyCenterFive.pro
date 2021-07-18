@@ -7,7 +7,10 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        WindowAdm/admproperty.cpp \
+        engine.cpp \
         main.cpp \
+        models/modeltasks.cpp \
         objects/cellclass.cpp \
         objects/note.cpp \
         objects/place.cpp \
@@ -17,7 +20,8 @@ SOURCES += \
         persons/administrator.cpp \
         persons/client.cpp \
         persons/specialist.cpp \
-        settings/settings.cpp
+        settings/settings.cpp \
+        translator.cpp
 
 RESOURCES += \
     res/resources.qrc
@@ -39,6 +43,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    WindowAdm/admproperty.h \
+    engine.h \
+    models/modeltasks.h \
     objects/cellclass.h \
     objects/note.h \
     objects/place.h \
@@ -48,4 +55,5 @@ HEADERS += \
     persons/administrator.h \
     persons/client.h \
     persons/specialist.h \
-    settings/settings.h
+    settings/settings.h \
+    translator.h
