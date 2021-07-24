@@ -6,6 +6,7 @@
 #include <QQmlContext>
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
+#include <QQuickStyle>
 
 #include "persons/client.h"
 
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+    QQuickStyle::setStyle("Material");
 /*------------------------------------------------------------------------------------------------*/
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(".//db.sqlite");

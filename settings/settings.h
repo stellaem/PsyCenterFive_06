@@ -19,24 +19,29 @@ public:
     Q_INVOKABLE int countCellPerHour() const { return cellPerHour; }
     Q_INVOKABLE int countSegments() { return (endCenter.hour() - startCenter.hour()) * cellPerHour; } // количество ячеек в дне
     Q_INVOKABLE int countHours() {return endCenter.hour() - startCenter.hour(); }
+    Q_INVOKABLE  QList<QString> &getListHours();
+    Q_INVOKABLE  QList<QString> &getListMinuts();
+
+    void setListMinuts();
+    void setListHours();
 
     virtual ~Settings(){};
+
+
+
+
+
+
 
 private:
     QTime startCenter = QTime(8, 00);
     QTime endCenter = QTime(20, 00);
     int cellPerHour = 12; // количество ячеек в часе
     QList<QVariant> listTime;
+    QList<QString> listHours;
+    QList<QString> listMinuts;
 
 };
 
-inline Settings::Settings(QObject *parent)
-{
-    for( QTime i = startCenter; i < endCenter; i = i.addSecs(secInSegment()))
-    {
-        QVariant qvar = QVariant::fromValue(i);
-        listTime.append(qvar);
-    }
- }
 
 #endif // SETTINGS_H

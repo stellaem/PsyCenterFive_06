@@ -1,6 +1,12 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.15
+import QtQuick.Dialogs 1.3
+import QtQuick.Controls 2.15
+
 import "qrc:/QML/Adm/Timetable/timetableItem_func.js" as Func_items
+
+import "qrc:/QML/Adm/Timetable" as Timetable
+import "qrc:/QML/Adm/Timetable/DiaChangeItem" as DiaChange
 
 
 GridLayout {
@@ -10,7 +16,9 @@ GridLayout {
     columnSpacing: 0
     rowSpacing: 0
     ListView {
+        z: 2
         id: _headerCabinet
+        interactive: false
         Layout.row: 0
         Layout.column: 1
         Layout.columnSpan: 1
@@ -36,7 +44,9 @@ GridLayout {
 
     }
     ListView {
+        z: 2
         id: _headerTime
+        interactive: false
         Layout.row: 1
         Layout.column: 0
         Layout.columnSpan: 1
@@ -67,6 +77,7 @@ GridLayout {
     }
     GridLayout {
         id : _gridVisible
+
         Layout.row: 1
         Layout.column: 1
         Layout.columnSpan: 1
@@ -115,11 +126,24 @@ GridLayout {
             model: qMPlace.rowCount() * settings.countSegments()
             delegate:
                 DropArea {
+                    objectName: index
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Rectangle {
+                    MouseArea {
                         anchors.fill: parent
-                        opacity: 0
+                        Menu {
+                            id: _contextMenu
+                            width: 100
+                            MenuItem { text: qsTr("Добавить запись") }
+                                 // BUG: !!! убрать огромное количество menu
+                        }
+                        DiaChange.Dia { // BUG: !!! убрать огромное количество диалогов
+                            id: _diaChangeItem
+                        }
+                        acceptedButtons: Qt.LeftButton | Qt.RightButton
+                        hoverEnabled : true
+                        onClicked: (mouse) => mouse.button & Qt.RightButton ? _contextMenu.popup() : null
+                        onDoubleClicked:  _diaChangeItem.open()
                     }
                 }
         }

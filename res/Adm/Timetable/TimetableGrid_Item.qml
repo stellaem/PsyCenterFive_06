@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-Item {
+Rectangle {
     id: _parent
     property string typeName: ""
     property int idClass: 0
@@ -11,58 +11,45 @@ Item {
     property var specialist: new Specialist()
     property int type: 0
     property var listClient: []
+    color: "red"
+    Drag.active: _mouseAreaTransfer.drag.active
+    Drag.hotSpot.x: width / 2
+
     MouseArea {
-        id: _mouseArea
-        anchors.fill: _parent
-        drag.target: _clsTile
-        onReleased: parent = _clsTile.Drag.target !== null ? _clsTile.Drag.target : _parent
-
-        Rectangle {
-           id: _clsTile
-           width: _parent.width
-           height: _parent.height
-           color: "#CBF4DB"
-
-           Drag.active: _mouseArea.drag.active
-           Drag.hotSpot.x: width / 2
-           states:
-                State {
-                   when: _mouseArea.drag.active
-                   ParentChange { target: _clsTile; parent: _parent }
-                   AnchorChanges { target: _clsTile; anchors.verticalCenter: undefined; anchors.horizontalCenter: undefined }
-                }
-
-           Text{
-               id: _textSpecialist
-               text: specialist.name + ' ' + specialist.surname
-
-           }
-           Text{
-               anchors.top: _textSpecialist.bottom
-               id: _textClient
-               text: listClient.length > 1 ? 'группа' : listClient[0].name + ' ' + listClient[0].surname
-
-           }
+        id: _mouseAreaTransfer
+        anchors.fill:  _parent
+        drag.target: _parent
+        drag.minimumX : 0
+        drag.maximumX: width * qMPlace.rowCount() - width
+        drag.minimumY: 0
+        drag.maximumY: _parent.parent.height - height
+        onReleased: {
+            var tile =_parent.Drag.target.parent.children[_parent.Drag.target.objectName]
+            var columns = _parent.Drag.target.parent.columns
+            var rows = _parent.Drag.target.parent.rows
+            var column = Math.floor(_parent.Drag.target.objectName / rows)
+            var row = _parent.Drag.target.objectName - column * rows
+            _parent.x = tile.x
+            _parent.y = tile.y
+            _parent.Layout.column = column
+            _parent.Layout.row = row
         }
 
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        hoverEnabled : true
+        onClicked: (mouse) => mouse.button & Qt.RightButton ? _contextMenu.popup(): console.log( "left click")
+
+//        onDoubleClicked: (mouse) => mouse.button & Qt.leftButton ? _diaChengItem.open() : console.log( "asd")
+
+    }
+    Item {
+        id: _dilator
+        width:  _parent.width
+        height: 10
+        anchors.bottom: _parent.bottom
+        anchors.horizontalCenter: _parent.horizontalCenter
         MouseArea {
-            z:-1
-            id: _aaa
-            width:  parent.width
-            height: _mouseAreaDilator.height + 50
-            anchors.horizontalCenter: _mouseAreaDilator.horizontalCenter
-            anchors.verticalCenter: _mouseAreaDilator.verticalCenter
-            State {
-                when: _mouseAreaDilator.drag.active
-                PropertyChanges { target: _aaa; cursorShape : Qt.SizeVerCursor }
-            }
-        }
-        MouseArea {
-            id: _mouseAreaDilator
-            width:  parent.width
-            height:  (_parent.height/ _parent.Layout.rowSpan) * 3
-            anchors.left: parent.left
-            anchors.bottom: _clsTile.bottom
+            anchors.fill: _dilator
             cursorShape : Qt.SizeVerCursor
             drag.target: _dilator
             onMouseYChanged: {
@@ -71,39 +58,22 @@ Item {
                     {_parent.Layout.rowSpan++}
                     else if(mouseY - ( _parent.height/ _parent.Layout.rowSpan) < 0)
                     {_parent.Layout.rowSpan--}
-
                 }
             }
-
-            Rectangle {
-                id: _dilator
-                anchors.fill: parent
-                Drag.active: _mouseAreaDilator.drag.active
-                opacity: 100
-                color: "red"
-            }
         }
 
-
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        hoverEnabled : true
-        onClicked: (mouse) => {
-            if(mouse.button & Qt.RightButton)
-            {
-                _contextMenu.popup()
-            }
-            else
-            {
-                console.log("leftClicked");
-            }
-        }
     }
 
     Menu {
         id: _contextMenu
         width: 100
-        MenuItem { text: qsTr("Cut") }
-        MenuItem { text: qsTr("Copy") }
-        MenuItem { text: qsTr("Paste") }
+        MenuItem { text: qsTr("Изменить") }
+        MenuItem { text: qsTr("Удалить") }
     }
+
+
+
+
 }
+
+

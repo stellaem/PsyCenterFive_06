@@ -30,6 +30,8 @@ public:
     Q_INVOKABLE QDate &getDate();
     Q_INVOKABLE void setDate(QDate newDate);
 
+    Q_INVOKABLE QString getStrDate();
+
 signals:
 
     void dateChanged();

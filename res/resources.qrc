@@ -12,6 +12,7 @@
         <file>_widgets/Tasks.qml</file>
         <file>Adm/Timetable/timetableItem_func.js</file>
         <file>Adm/Timetable/TimetableGrid_Item.qml</file>
+        <file>Adm/Timetable/DiaChangeItem/Dia.qml</file>
     </qresource>
     <qresource prefix="/Image">
         <file>icons/calendar.png</file>

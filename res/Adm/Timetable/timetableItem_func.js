@@ -16,8 +16,7 @@ function createItems()
             'Layout.column': findIndexPlace(cellClass),
             'Layout.rowSpan': settings.countCellPerHour() * cellClass.duration / 60 ,
             'Layout.fillHeight': true,
-            'Layout.fillWidth': true,
-
+            'Layout.fillWidth': true
         })
     })
 }

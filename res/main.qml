@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Controls.Material 2.15
 import "qrc:/QML/Dia/" as Dia
 import "qrc:/QML/Adm/" as Adm
 import "qrc:/QML/Sp/" as Sp
@@ -9,6 +10,8 @@ import "qrc:/QML/Dev/" as Dev
 ApplicationWindow {
     id: _parent
     visible: true
+    Material.theme: Material.Dark
+    Material.accent: Material.Purple
     width: 800
     height: 600
     title: qsTr("Программа \"Детский Центр\"")

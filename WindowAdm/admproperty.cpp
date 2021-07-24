@@ -69,3 +69,8 @@ void AdmProperty::setDate(QDate newDate)
     setModelTask(date);
     emit dateChanged();
 }
+
+QString AdmProperty::getStrDate()
+{
+    return date.toString("dddd dd.MM.yyyy");
+}
