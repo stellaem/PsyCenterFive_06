@@ -10,6 +10,9 @@ SOURCES += \
         WindowAdm/admproperty.cpp \
         engine.cpp \
         main.cpp \
+        models/modelclient.cpp \
+        models/modelplace.cpp \
+        models/modelspecialist.cpp \
         models/modeltasks.cpp \
         objects/cellclass.cpp \
         objects/note.cpp \
@@ -45,6 +48,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     WindowAdm/admproperty.h \
     engine.h \
+    models/modelclient.h \
+    models/modelplace.h \
+    models/modelspecialist.h \
     models/modeltasks.h \
     objects/cellclass.h \
     objects/note.h \

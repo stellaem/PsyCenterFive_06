@@ -1,5 +1,7 @@
 #include "cellclass.h"
 
+#include <QSqlRecord>
+
 
 
 CellClass::CellClass(int id, QObject *parent) : QObject(parent),
@@ -112,6 +114,14 @@ void CellClass::setListVClient(const QList<QVariant> &newListVClient)
     emit listVClientChanged();
 }
 
+void CellClass::recordCell()
+{
+    QSqlQuery *q = new QSqlQuery();
+    q->prepare("insert into class (duration)  values (60)");
+    q->exec();
+
+}
+
 void CellClass::searchFromClassClient()
 {
     QSqlQuery *q =  new QSqlQuery();
@@ -130,5 +140,4 @@ void CellClass::addToListVClient(int id_client)
     QVariant var = QVariant::fromValue(c);
     listVClient.append(var);
 }
-
 

@@ -1,11 +1,11 @@
-function createItems()
+function createItems(_gridInvisible)
 {
     admProperty.getListVCellClass().forEach(function(cellClass, i, arr)
     {
-
         var item = Qt.createComponent("qrc:/QML/Adm/Timetable/TimetableGrid_Item.qml")
         item.createObject(_gridInvisible,
         {
+
             'typeName': "_itemClass",
             'idClass': cellClass.id,
             'time': cellClass.timeStart,
@@ -23,7 +23,7 @@ function createItems()
 
 function findIndexPlace(cellClass)
 {
-    for (var indexPlace = 0; indexPlace < qMPlace.rowCount(); indexCabinet++)
+    for (var indexPlace = 0; indexPlace < qMPlace.rowCount(); indexPlace++)
     {
         if (qMPlace.data(qMPlace.index(indexPlace, 0))  === cellClass.place.id)
         {
@@ -32,6 +32,18 @@ function findIndexPlace(cellClass)
     }
 }
 
+
+function reloadItems(date, _gridInvisible)
+{
+
+    for (var i in _gridInvisible.data){
+        if(_gridInvisible.data[i].typeName === '_itemClass')
+        {
+            _gridInvisible.data[i].destroy()
+        }
+    }
+    createItems(_gridInvisible)
+}
 
 
 

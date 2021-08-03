@@ -38,9 +38,6 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         hoverEnabled : true
         onClicked: (mouse) => mouse.button & Qt.RightButton ? _contextMenu.popup(): console.log( "left click")
-
-//        onDoubleClicked: (mouse) => mouse.button & Qt.leftButton ? _diaChengItem.open() : console.log( "asd")
-
     }
     Item {
         id: _dilator
@@ -70,7 +67,6 @@ Rectangle {
         MenuItem { text: qsTr("Изменить") }
         MenuItem { text: qsTr("Удалить") }
     }
-
 
 
 

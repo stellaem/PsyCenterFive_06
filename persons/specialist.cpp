@@ -141,3 +141,4 @@ void Specialist::setPhoto(const QPixmap &newPhoto)
 }
 
 
+

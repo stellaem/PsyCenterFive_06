@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDebug>
 
 #include "objects/place.h"
 #include "persons/specialist.h"
@@ -17,7 +18,8 @@ class CellClass : public QObject
     Q_OBJECT
 public:
     CellClass(int id, QObject *parent = nullptr);
-
+    CellClass(QObject *parent = nullptr) : QObject(parent) {};
+    ~CellClass(){};
     int getId() const;
     void setId(int newId);
     const QDateTime &getDateAndTimeStart() const;
@@ -32,6 +34,7 @@ public:
     void setSpecialist(Specialist *newSpecialist);
     const QList<QVariant> &getListVClient() const;
     void setListVClient(const QList<QVariant> &newListVClient);
+    Q_INVOKABLE void recordCell();
 
 signals:
     void idChanged();

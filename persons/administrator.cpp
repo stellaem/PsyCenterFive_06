@@ -108,4 +108,3 @@ void Administrator::setBirthday(const QDate &newBirthday)
     birthday = newBirthday;
     emit birthdayChanged();
 }
-

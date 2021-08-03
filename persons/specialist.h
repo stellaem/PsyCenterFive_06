@@ -12,6 +12,7 @@ class Specialist : public QObject
 {
     Q_OBJECT
 public:
+    Specialist(QObject *parent = nullptr): QObject(parent) {};
     Specialist(int id, QObject *parent = nullptr);
     Specialist(QString login, QObject *parent = nullptr);
 

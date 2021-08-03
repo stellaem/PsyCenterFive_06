@@ -9,7 +9,7 @@ Rectangle {
         spacing: 6
         RowLayout {
             id: _title
-            implicitHeight: 35
+
             spacing: 0
             Rectangle {
                 width: 35
@@ -24,19 +24,18 @@ Rectangle {
 
             Text {
                 text: qsTr("Расписание")
-                font.pixelSize: 20
             }
         }
         ComboBox {
             id: _selectSp
             width: 100
-            implicitHeight: 35
+
             model: ["Общее", "Попкова С.Е."]
 
         }
         TextField {
             id: _search
-            implicitHeight: 35
+
             Layout.fillWidth: true
             Layout.rightMargin: 6
         }

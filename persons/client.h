@@ -15,7 +15,9 @@ class Client: public QObject
 {
     Q_OBJECT
 public:
+    Client(QObject *parent = nullptr): QObject(parent) {};
     Client(int id, QObject *parent = nullptr);
+
     int getId() const;
     void setId(int newId);
     int getNumCard() const;

@@ -11,9 +11,7 @@ Rectangle {
         spacing: 6
 
         ComboBox {
-            Layout.topMargin: 6
             id: _selectPeriod
-            implicitHeight: 35
             Layout.fillWidth: true
             model: ["День", "Неделя", "Месяц"]
         }

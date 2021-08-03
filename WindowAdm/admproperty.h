@@ -9,6 +9,8 @@
 #include <QSqlTableModel>
 
 #include "models/modeltasks.h"
+#include "models/modelplace.h"
+#include "models/modelspecialist.h"
 
 
 class AdmProperty : public QObject
@@ -18,12 +20,11 @@ public:
     explicit AdmProperty(QObject *parent = nullptr);;
 
     Q_INVOKABLE QList<QVariant> getListVCellClass();
-    void setListVCellClass(QDate date);
+    void reloadListVCellClass(QDate date);
 
-    Q_INVOKABLE QSqlQueryModel *getQueryModelPlace();
-    void setQueryModelPlace();
-
+    Q_INVOKABLE QVariant getModelPlace();
     Q_INVOKABLE QVariant getModelTask();
+    Q_INVOKABLE QVariant getModelSpecialist();
     Q_INVOKABLE void setModelTask(QDate date);
 
 
@@ -38,8 +39,9 @@ signals:
 
 private:
     QList<QVariant> listVCellClass;
-    QSqlQueryModel *queryModelPlace;
+    ModelPlace *modelPlace;
     ModelTasks *modelTask;
+    ModelSpecialist *modelSpecialist;
     QDate date;
 };
 

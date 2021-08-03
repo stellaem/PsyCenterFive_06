@@ -16,7 +16,7 @@ Dialog {
                 model: [qsTr("Специалист"), qsTr("Администратор"), qsTr("Разработчик программ")]
             }
             RowLayout { Label { text: qsTr("Логин") } TextField { } }
-            RowLayout { Label { text: qsTr("Аароль") } TextField { echoMode: TextInput.Password } }
+            RowLayout { Label { text: qsTr("Пароль") } TextField { echoMode: TextInput.Password } }
         }
     }
 }

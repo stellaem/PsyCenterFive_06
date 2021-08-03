@@ -10,26 +10,35 @@ Settings::Settings(QObject *parent)
         listTime.append(qvar);
     }
 
-    setListHours();
+    refreshListHours();
+    refreshListMinuts();
  }
 
-QList<QString> &Settings::getListHours()
+QStringList Settings::getListHours()
 {
     return listHours;
 }
 
-QList<QString> &Settings::getListMinuts()
+QStringList Settings::getListMinuts()
 {
 
     return listMinuts;
 }
 
-void Settings::setListMinuts()
+void Settings::refreshListMinuts()
 {
+    listMinuts.clear();
+    int start = 0;
+
+    while (start < 60)
+    {
+        listMinuts.append(QString::number(start));
+        start = start+minInSegment();
+    }
 
 }
 
-void Settings::setListHours()
+void Settings::refreshListHours()
 {
     listHours.clear();
     QTime start = startCenter;
@@ -39,7 +48,6 @@ void Settings::setListHours()
         listHours.append(start.toString("hh"));
         start = start.addSecs(60*60);
     }
-    qDebug() << listHours;
 }
 
 

@@ -12,6 +12,7 @@
 
 #include "translator.h"
 #include "engine.h"
+#include "objects/cellclass.h"
 
 
 int main(int argc, char *argv[])
@@ -29,9 +30,11 @@ int main(int argc, char *argv[])
 /*------------------------------------------------------------------------------------------------*/
     // Translator *translator = new Translator(&app);
 /*------------------------------------------------------------------------------------------------*/
+    qmlRegisterType<CellClass>("Objects", 1, 0, "CellClass");
     const QUrl url(QStringLiteral("qrc:/QML/main.qml"));
     Engine *engine = new Engine(app, url);
     engine->load("qrc:/QML/main.qml");
+
 /*------------------------------------------------------------------------------------------------*/
     return app.exec();
 /**************************************************************************************************/

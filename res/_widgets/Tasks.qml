@@ -4,7 +4,6 @@ import QtQuick.Controls 2.15
 
 Rectangle {
     property alias _listViewTask: _listViewTask
-
     Layout.fillWidth: true
     Layout.fillHeight: true
     ColumnLayout {
@@ -13,11 +12,9 @@ Rectangle {
         Rectangle{
             id: _taskHeader
             Layout.fillWidth: true
-            implicitHeight: 35
 
             Text {
                 anchors.fill: _taskHeader
-                font.pixelSize: 20
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 text: qsTr("Задания на день")
@@ -54,13 +51,11 @@ Rectangle {
                             height: 8
                             width: 8
                             color: "black"
-
                         }
                         Text {
                             id: _textTask
-                            text: display
+                            text: txt
                             width: _listViewTask.width - 25
-                            font.pixelSize: 12
                             wrapMode: Text.WordWrap
                         }
                     }

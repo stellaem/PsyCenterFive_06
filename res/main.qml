@@ -10,8 +10,6 @@ import "qrc:/QML/Dev/" as Dev
 ApplicationWindow {
     id: _parent
     visible: true
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
     width: 800
     height: 600
     title: qsTr("Программа \"Детский Центр\"")

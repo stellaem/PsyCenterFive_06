@@ -5,12 +5,12 @@
 #include <QDebug>
 
 AdmProperty::AdmProperty(QObject *parent) : QObject(parent),
-    queryModelPlace(new QSqlQueryModel),
+    modelPlace(new ModelPlace),
     modelTask(new ModelTasks),
+    modelSpecialist(new ModelSpecialist),
     date (QDate().currentDate())
 {
-    setQueryModelPlace();
-    setListVCellClass(date);
+    reloadListVCellClass(date);
     setModelTask(date);
 }
 
@@ -19,12 +19,8 @@ QList<QVariant> AdmProperty::getListVCellClass()
     return listVCellClass;
 }
 
-QSqlQueryModel *AdmProperty::getQueryModelPlace()
-{
-    return queryModelPlace;
-}
 
-void AdmProperty::setListVCellClass(QDate date)
+void AdmProperty::reloadListVCellClass(QDate date)
 {
     listVCellClass.clear();
     QSqlQuery *q = new QSqlQuery();
@@ -39,9 +35,10 @@ void AdmProperty::setListVCellClass(QDate date)
     }
 }
 
-void AdmProperty::setQueryModelPlace()
+QVariant AdmProperty::getModelPlace()
 {
-    queryModelPlace->setQuery("select id, name from place");
+    QVariant var = QVariant::fromValue(modelPlace);
+    return var;
 }
 
 QVariant AdmProperty::getModelTask()
@@ -50,9 +47,15 @@ QVariant AdmProperty::getModelTask()
     return var;
 }
 
+QVariant AdmProperty::getModelSpecialist()
+{
+    QVariant var = QVariant::fromValue(modelSpecialist);
+    return var;
+}
+
 void AdmProperty::setModelTask(QDate date)
 {
-    modelTask->findTaskInBase(date);
+    modelTask->refresh(date);
 }
 
 QDate &AdmProperty::getDate()
@@ -65,7 +68,7 @@ void AdmProperty::setDate(QDate newDate)
     if (date == newDate)
         return;
     date = newDate;
-    setListVCellClass(date);
+    reloadListVCellClass(date);
     setModelTask(date);
     emit dateChanged();
 }

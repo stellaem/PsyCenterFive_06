@@ -10,6 +10,7 @@ class Administrator : public QObject
 {
     Q_OBJECT
 public:
+    Administrator(QObject *parent = nullptr) : QObject(parent){};
     Administrator(int id, QObject *parent = nullptr);
 
     int getId() const;

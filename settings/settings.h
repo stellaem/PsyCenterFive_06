@@ -19,11 +19,11 @@ public:
     Q_INVOKABLE int countCellPerHour() const { return cellPerHour; }
     Q_INVOKABLE int countSegments() { return (endCenter.hour() - startCenter.hour()) * cellPerHour; } // количество ячеек в дне
     Q_INVOKABLE int countHours() {return endCenter.hour() - startCenter.hour(); }
-    Q_INVOKABLE  QList<QString> &getListHours();
-    Q_INVOKABLE  QList<QString> &getListMinuts();
+    Q_INVOKABLE  QStringList getListHours();
+    Q_INVOKABLE  QStringList getListMinuts();
 
-    void setListMinuts();
-    void setListHours();
+    void refreshListMinuts();
+    void refreshListHours();
 
     virtual ~Settings(){};
 
@@ -38,8 +38,8 @@ private:
     QTime endCenter = QTime(20, 00);
     int cellPerHour = 12; // количество ячеек в часе
     QList<QVariant> listTime;
-    QList<QString> listHours;
-    QList<QString> listMinuts;
+    QStringList listHours;
+    QStringList listMinuts;
 
 };
 

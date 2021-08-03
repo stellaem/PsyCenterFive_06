@@ -8,6 +8,7 @@ class Place : public QObject
     Q_OBJECT
 public:
     Place(int id, QObject *parent = nullptr);
+    Place(QObject *parent = nullptr) : QObject(parent){};
 
     int getId() const;
     void setId(int newId);

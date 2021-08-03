@@ -17,7 +17,7 @@ Engine::Engine(QGuiApplication &app, const QUrl &url, QObject *parent) : QQmlApp
 void Engine::loadPropertyAdm()
 {
     this->rootContext()->setContextProperty("settings", settings);
-    this->rootContext()->setContextProperty("qMPlace", admProperty->getQueryModelPlace());
+//    this->rootContext()->setContextProperty("qMPlace", admProperty->getQueryModelPlace());
     this->rootContext()->setContextProperty("admProperty", admProperty);
 }
 

@@ -56,3 +56,5 @@ void Qualification::setConfirm(const QDate &newConfirm)
     confirm = newConfirm;
     emit confirmChanged();
 }
+
+

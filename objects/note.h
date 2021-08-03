@@ -7,7 +7,7 @@ class Note : public QObject
 {
     Q_OBJECT
 public:
-    Note() {}
+    Note(QObject *parent = nullptr) : QObject(parent) {}
     Note(int id, QObject *parent = nullptr);
 
     int getId() const;

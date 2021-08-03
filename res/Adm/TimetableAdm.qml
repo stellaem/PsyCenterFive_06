@@ -3,6 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import "qrc:/QML/Adm/Timetable" as Timetable
+import "qrc:/QML/Adm/Timetable/timetableItem_func.js" as TimetableFunc
 
 Window {
     id: _parent
@@ -31,6 +32,9 @@ Window {
             Layout.column: 0
             Layout.columnSpan: 1
             Layout.rowSpan: 1
+            Component.onCompleted: {
+                TimetableFunc.createItems(_gridInvisible)
+            }
         }
         Timetable.Sidebar {
             id: _sidebar
@@ -40,7 +44,7 @@ Window {
             Layout.column: 1
             Layout.columnSpan: 1
             Layout.rowSpan: 2
-            _calendar.onClicked: {_timetable.reloadItems(date)}
+            _calendar.onClicked: {TimetableFunc.reloadItems(date, _timetable._gridInvisible)}
         }
     }
 
